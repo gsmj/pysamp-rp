@@ -6,7 +6,7 @@ info/
 .*.sw*
 filterscripts/*.amx
 gamemodes/*.amx
-scriptfiles/*
+scriptfiles/
 filterscripts/
 __pycache__/
 *.pyc
