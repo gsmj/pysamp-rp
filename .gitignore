@@ -14,7 +14,7 @@ discirc/
 # Dev stuff..
 
 bans.json
-pawno/
+qawno/
 plugins/
 pysamp/
 pystreamer/
