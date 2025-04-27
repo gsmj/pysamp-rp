@@ -29,7 +29,7 @@ def _handle_load_error(module_name: str, exception: Exception) -> None:
     print(f"Error loading module {module_name}:\n {traceback.format_exc()}")
 
 
-def load_module(module_name: str):
+def load_module(module_name: str) -> None:
     if module_name not in _unloaded_modules:
         try:
             module = importlib.import_module(f"{__name__}.{module_name}")
