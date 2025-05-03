@@ -38,10 +38,9 @@ class Player(BasePlayer):
 
         return from_registry
 
-    def load_from_gang_model(self, model) -> None:
+    def load_from_model(self, model) -> None:
         """
-        Changing Player class attributes
-        (such as gang_id, kills, deaths) from UserGang model.
+        Changing Player class attributes from db model.
         """
         return
 
