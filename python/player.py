@@ -4,6 +4,7 @@ from typing import Callable
 
 from pysamp.player import Player as BasePlayer
 from pysamp.textdraw import TextDraw  # noqa
+from .color_consts import RED, DARK_GREEN
 
 from samp import SPECIAL_ACTION_DUCK  # type: ignore
 
@@ -37,6 +38,12 @@ class Player(BasePlayer):
             return func(*args, **kwargs)
 
         return from_registry
+
+    def send_error_message(self, message: str) -> None:
+        self.send_client_message(RED, f"[ОШИБКА] {message}!")
+
+    def send_tip_message(self, message: str) -> None:
+        self.send_client_message(DARK_GREEN, f"[СОВЕТ] {message}!")
 
     def load_from_model(self, model) -> None:
         """
