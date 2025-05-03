@@ -1,9 +1,8 @@
-import importlib
-import traceback
 from pysamp.callbacks import HookedCallback
 from pystreamer import register_callbacks
 from typing import Optional, Callable, Any
 from dataclasses import dataclass
+from pysamp import on_gamemode_init
 
 
 @dataclass
@@ -21,48 +20,6 @@ class CallbackWithFinalizer(HookedCallback):
         return ret
 
 
-_loaded_modules = {}
-_unloaded_modules = {}
-
-
-def _handle_load_error(module_name: str, exception: Exception) -> None:
-    print(f"Error loading module {module_name}:\n {traceback.format_exc()}")
-
-
-def load_module(module_name: str) -> None:
-    if module_name not in _unloaded_modules:
-        try:
-            module = importlib.import_module(f"{__name__}.{module_name}")
-
-        except Exception as exception:
-            _handle_load_error(module_name, exception)
-            return
-
-    else:
-        module = _unloaded_modules[module_name]
-        try:
-            importlib.reload(module)
-
-        except Exception as exception:
-            _handle_load_error(module_name, exception)
-            return
-
-        else:
-            del _unloaded_modules[module_name]
-
-    _loaded_modules[module_name] = module
-    if hasattr(module, "OnGameModeInit"):
-        getattr(module, "OnGameModeInit")()
-
-
-def unload_module(module_name: str) -> None:
-    _unloaded_modules[module_name] = module = _loaded_modules[module_name]
-    del _loaded_modules[module_name]
-
-    if hasattr(module, "OnGameModeExit"):
-        getattr(module, "OnGameModeExit")()
-
-
-def OnGameModeInit() -> None:
+@on_gamemode_init
+def on_ready() -> None:
     register_callbacks()
-    ...
