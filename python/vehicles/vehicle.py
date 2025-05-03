@@ -1,7 +1,8 @@
 from pysamp.vehicle import Vehicle as BaseVehicle
 import functools
 import math
-from typing import Callable
+from typing import Callable, Optional
+from .vehicle_consts import MAX_FUEL_CAPACITY
 
 CAR_IDS = (
     412, 534, 535, 536, 566, 567, 575, 576, 400, 424, 444, 470, 489, 495, 500,
@@ -18,6 +19,17 @@ class Vehicle(BaseVehicle):
     registry: dict[int, BaseVehicle] = {}
 
     def __init__(self, id: int):
+        self.owner: Optional[str] = None
+        self.engine_enabled: bool = False
+        self.lights_enbales: bool = False
+        self.doors_locked: bool = False
+
+        self.faction_id: Optional[int] = None
+
+        self.fuel: int = MAX_FUEL_CAPACITY
+        self.endless_fuel: bool = False
+        self.max_fuel: int = MAX_FUEL_CAPACITY
+
         super().__init__(id)
 
     @classmethod

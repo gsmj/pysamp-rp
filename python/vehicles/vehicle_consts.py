@@ -1,0 +1,1 @@
+MAX_FUEL_CAPACITY: int = 100
