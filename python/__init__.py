@@ -2,7 +2,10 @@ from pysamp.callbacks import HookedCallback
 from pystreamer import register_callbacks
 from typing import Optional, Callable, Any
 from dataclasses import dataclass
-from pysamp import on_gamemode_init
+from pysamp import on_gamemode_init, set_world_time
+from datetime import datetime
+
+from . import selection
 
 
 @dataclass
@@ -23,3 +26,5 @@ class CallbackWithFinalizer(HookedCallback):
 @on_gamemode_init
 def on_ready() -> None:
     register_callbacks()
+    print("Loaded")
+    set_world_time(datetime.now().hour)
