@@ -1,26 +1,20 @@
-from pysamp.callbacks import HookedCallback
 from pystreamer import register_callbacks
-from typing import Optional, Callable, Any
-from dataclasses import dataclass
 from pysamp import on_gamemode_init, set_world_time
 from datetime import datetime
+from .player import Player
 
 from . import selection
 
+from .finalizer import CallbackWithFinalizer
 
-@dataclass
-class CallbackWithFinalizer(HookedCallback):
-    finalizer: Optional[Callable[..., None]] = None
 
-    def __call__(self, *args: tuple[Any], **kwargs: dict[str, Any]) -> None:
-        ret = super().__call__(*args, **kwargs)
-        if self.finalizer:
-            finalizer_ret = self.finalizer(*args, **kwargs)
-            if finalizer_ret is not None:
-                print(finalizer_ret)
-                return finalizer_ret
+def clean_registry(player_id: int, *args, **kwargs) -> None:
+    del Player.registry[player_id]
 
-        return ret
+
+@Player.on_disconnect
+def on_player_disconnect(player: Player, reason: int) -> None:
+    ...
 
 
 @on_gamemode_init
@@ -28,3 +22,11 @@ def on_ready() -> None:
     register_callbacks()
     print("Loaded")
     set_world_time(datetime.now().hour)
+
+    import python
+    original = python.OnPlayerDisconnect
+    python.OnPlayerDisconnect = CallbackWithFinalizer(
+        name=original.name,
+        original=original,
+        finalizer=clean_registry,
+    )
