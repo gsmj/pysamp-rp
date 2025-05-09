@@ -1,7 +1,9 @@
 import functools
 import time
 from typing import Callable, Optional
+from datetime import datetime
 
+from pysamp.timer import set_timer
 from pysamp.player import Player as BasePlayer
 from pysamp.textdraw import TextDraw  # noqa
 from .color_consts import RED, DARK_GREEN
@@ -14,19 +16,26 @@ class Player(BasePlayer):
 
     def __init__(self, player_id: int):
         super().__init__(player_id)
+        self.password: Optional[str] = None
+        self.email: Optional[str] = None
+        self.pin: Optional[int] = None
+        self.registration_ip: Optional[str] = None
+        self.last_ip: Optional[str] = None
+        self.registration_date: Optional[datetime] = None
+
         self.level: Optional[int] = None
         self.exp: Optional[int] = None
         self.skin_id: Optional[int] = None
 
-        self.balance: Optional[int] = None
+        self.money: Optional[int] = None
         self.bank: Optional[int] = None
         self.deposit: Optional[int] = None
-
 
         self.roleplay_age: Optional[int] = None
         self.roleplay_bio: Optional[str] = None
         self.roleplay_sex: Optional[str] = None
 
+        self.is_logged: bool = False
 
 
     @classmethod
@@ -57,7 +66,7 @@ class Player(BasePlayer):
         self.send_client_message(RED, f"[ОШИБКА] {message}!")
 
     def send_tip_message(self, message: str) -> None:
-        self.send_client_message(DARK_GREEN, f"[СОВЕТ] {message}!")
+        self.send_client_message(DARK_GREEN, f"Подсказка {message}!")
 
     def load_from_model(self, model) -> None:
         """
@@ -150,3 +159,10 @@ class Player(BasePlayer):
 
     def set_skin_native(self, skin_id: int) -> None:
         return super().set_skin(skin_id)
+
+    def kick_if_not_logged(self) -> None:
+        if not self.is_logged:
+            self.send_error_message(
+                "Необходимо авторизоваться / пройти регистрацию!"
+            )
+            set_timer(self.kick, 1000, False)
