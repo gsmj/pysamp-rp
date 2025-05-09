@@ -1,6 +1,6 @@
 import functools
 import time
-from typing import Callable
+from typing import Callable, Optional
 
 from pysamp.player import Player as BasePlayer
 from pysamp.textdraw import TextDraw  # noqa
@@ -14,6 +14,20 @@ class Player(BasePlayer):
 
     def __init__(self, player_id: int):
         super().__init__(player_id)
+        self.level: Optional[int] = None
+        self.exp: Optional[int] = None
+        self.skin_id: Optional[int] = None
+
+        self.balance: Optional[int] = None
+        self.bank: Optional[int] = None
+        self.deposit: Optional[int] = None
+
+
+        self.roleplay_age: Optional[int] = None
+        self.roleplay_bio: Optional[str] = None
+        self.roleplay_sex: Optional[str] = None
+
+
 
     @classmethod
     def from_registry_native(cls, player: BasePlayer | int) -> "Player":
@@ -129,3 +143,10 @@ class Player(BasePlayer):
                 (color & 0xFF) | (clr_b << 8) | (clr_g << 16) | (clr_r << 24),
                 string
             )
+
+    def set_skin(self, skin_id: int) -> None:
+        self.skin_id = skin_id
+        return super().set_skin(self.skin_id)
+
+    def set_skin_native(self, skin_id: int) -> None:
+        return super().set_skin(skin_id)
