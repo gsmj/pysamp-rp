@@ -63,10 +63,10 @@ class Player(BasePlayer):
         return from_registry
 
     def send_error_message(self, message: str) -> None:
-        self.send_client_message(RED, f"[ОШИБКА] {message}!")
+        self.send_client_message(RED, f"<!> {message}!")
 
     def send_tip_message(self, message: str) -> None:
-        self.send_client_message(DARK_GREEN, f"Подсказка {message}!")
+        self.send_client_message(DARK_GREEN, f">> {message}!")
 
     def load_from_model(self, model) -> None:
         """
