@@ -1,6 +1,6 @@
 import functools
 import time
-from typing import Callable, Optional
+from typing import Callable, Optional, Literal
 from datetime import datetime
 
 from pysamp.timer import set_timer
@@ -18,10 +18,17 @@ class Player(BasePlayer):
         super().__init__(player_id)
         self.password: Optional[str] = None
         self.email: Optional[str] = None
+        self.sex: Optional[Literal[0, 1]] = None
         self.pin: Optional[int] = None
         self.registration_ip: Optional[str] = None
         self.last_ip: Optional[str] = None
         self.registration_date: Optional[datetime] = None
+
+        self.admin_level: Optional[int] = None
+        self.admin_password: Optional[int] = None
+
+        self.promo_code: Optional[str] = None
+        self.invited_by: Optional[str] = None
 
         self.level: Optional[int] = None
         self.exp: Optional[int] = None
@@ -31,12 +38,10 @@ class Player(BasePlayer):
         self.bank: Optional[int] = None
         self.deposit: Optional[int] = None
 
-        self.roleplay_age: Optional[int] = None
         self.roleplay_bio: Optional[str] = None
-        self.roleplay_sex: Optional[str] = None
 
         self.is_logged: bool = False
-
+        self.is_choosing_skin: bool = False
 
     @classmethod
     def from_registry_native(cls, player: BasePlayer | int) -> "Player":
@@ -163,6 +168,6 @@ class Player(BasePlayer):
     def kick_if_not_logged(self) -> None:
         if not self.is_logged:
             self.send_error_message(
-                "Необходимо авторизоваться / пройти регистрацию!"
+                "Необходимо авторизоваться / пройти регистрацию"
             )
             set_timer(self.kick, 1000, False)
