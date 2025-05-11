@@ -4,7 +4,7 @@ def color_to_hex(color: int) -> str:
 
 WHITE: int = 0xFFFFFFFF
 DARK_GREEN: int = 0x34C924AA
-HIGHLIGHT: int = 0xD53032AA
+HIGHLIGHT: int = 0xFAC51CAA
 RED: int = 0xD2042DAA
 MASK: int = 0x22222200
 DEP: int = 0xFF8282AA
