@@ -2,7 +2,6 @@ from ..player import Player
 from ..color_consts import (
     WHITE,
     WHITE_HEX,
-    HIGHLIGHT,
     HIGHLIGHT_HEX,
 )
 from . import dialogs
@@ -19,6 +18,7 @@ def on_player_connect_auth(player: Player) -> None:
         WHITE,
         f"Добро пожаловать на сервер {HIGHLIGHT_HEX}Merge RolePlay{WHITE_HEX}!"
     )
+    dialogs.show_register_dialog(player)
 
 
 @Player.on_request_class
