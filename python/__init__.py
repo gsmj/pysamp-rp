@@ -1,11 +1,16 @@
-from pystreamer import register_callbacks
+import pystreamer
 from pysamp import on_gamemode_init, set_world_time
 from datetime import datetime
 from .player import Player
 
-from . import selection
+from . import (
+    selection,
+    auth
+)
 
 from .finalizer import CallbackWithFinalizer
+import samp # type: ignore
+samp.config(encoding="cp1251")
 
 
 def clean_registry(player_id: int, *args, **kwargs) -> None:
@@ -19,7 +24,7 @@ def on_player_disconnect(player: Player, reason: int) -> None:
 
 @on_gamemode_init
 def on_ready() -> None:
-    register_callbacks()
+    pystreamer.register_callbacks()
     print("Loaded")
     set_world_time(datetime.now().hour)
 
