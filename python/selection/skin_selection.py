@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-from pysamp.textdraw import TextDraw, cancel_select_text_draw
+from pysamp.textdraw import TextDraw, cancel_select_text_draw, select_text_draw
 from ..player import Player
 from pysamp import on_gamemode_init
 from typing import ClassVar, Optional
-
+from ..color_consts import GOV
 
 @dataclass
 class SkinSelection:
@@ -32,6 +32,7 @@ class SkinSelection:
         self.player.toggle_controllable(False)
         self.player.set_interior(5)
         self.player.set_skin(self.skins[self.index])
+        select_text_draw(self.player.id, GOV)
 
     def disable(self) -> None:
         self.player.toggle_controllable(True)
@@ -216,6 +217,7 @@ class SelectionUI:
         cls._skin_selection[player.id] = SkinSelection(player, skins)
         cls._skin_selection[player.id].enable()
         cls._show_for_player(player)
+
 
     @classmethod
     def disable_selection(cls, player: Player):
