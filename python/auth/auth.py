@@ -25,7 +25,6 @@ def on_player_connect_auth(player: Player) -> None:
         f"Добро пожаловать на сервер {HIGHLIGHT_HEX}Merge RolePlay{WHITE_HEX}!"
     )
     dialogs.show_register_dialog(player)
-    return
 
 
 @Player.on_request_class
@@ -40,7 +39,6 @@ def on_player_request_class(player: Player, class_id: int) -> None:
 @Player.on_spawn
 @Player.using_registry
 def on_player_spawn_auth(player: Player) -> None:
-    print("spawn")
     if player.is_choosing_skin:
         SelectionUI.enable_selection(player, DEFAULT_SKINS[player.sex])
         return
