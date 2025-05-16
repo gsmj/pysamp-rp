@@ -6,6 +6,7 @@ from datetime import datetime
 from pysamp.timer import set_timer
 from pysamp.player import Player as BasePlayer
 from pysamp.textdraw import TextDraw  # noqa
+from pysamp.event import event
 from .color_consts import RED, DARK_GREEN
 
 from samp import SPECIAL_ACTION_DUCK  # type: ignore
@@ -158,11 +159,11 @@ class Player(BasePlayer):
                 string
             )
 
-    def set_skin(self, skin_id: int) -> None:
+    def set_skin(self, skin_id: int) -> bool:
         self.skin_id = skin_id
         return super().set_skin(self.skin_id)
 
-    def set_skin_native(self, skin_id: int) -> None:
+    def set_skin_native(self, skin_id: int) -> bool:
         return super().set_skin(skin_id)
 
     def kick_if_not_logged(self) -> None:
@@ -171,3 +172,8 @@ class Player(BasePlayer):
                 "Необходимо авторизоваться / пройти регистрацию"
             )
             set_timer(self.kick, 1000, False)
+
+    @event("test")
+    def on_auth(cls, player: "Player") -> "Player":
+        player.send_tip_message(f"Hi from custom event, {player}!")
+        return (player, )
