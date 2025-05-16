@@ -5,6 +5,7 @@ from ..color_consts import (
     HIGHLIGHT_HEX,
     WHITE_HEX,
     RED_HEX,
+    GREEN_HEX,
 )
 from samp import DIALOG_STYLE_INPUT, DIALOG_STYLE_MSGBOX # type: ignore
 
@@ -55,6 +56,39 @@ IC (In Character) - это все, что касается виртуально�
 • Запрещен обмен внеигровых предметов в любой форме, на игровые.
 Запрещена продажа / передача аккаунтов.
 """
+
+
+def show_login_dialog(player: Player) -> None:
+    Dialog.create(
+        DIALOG_STYLE_INPUT,
+        "Регистрация | Пароль",
+        f"{WHITE_HEX}Добро пожаловать на сервер "
+        f"{HIGHLIGHT_HEX}Merge RolePlay{WHITE_HEX}!\n"
+        f"Ваш аккаунт {GREEN_HEX}зарегестрирован{WHITE_HEX}.\n"
+        "Введите пароль:",
+        "Далее",
+        "Отмена",
+        on_response=on_login_response,
+    )
+
+
+@Player.using_registry
+def on_login_response(
+    player: Player, response: int, list_item: int, input_text: str
+) -> None:
+    if not response:
+        player.kick_if_not_logged()
+        return
+
+    if len(input_text) < 6 or len(input_text) > 32:
+        player.send_error_message(
+            "Длина пароля должна быть от 6 и до 32 символов"
+        )
+        show_login_dialog(player)
+        return
+
+    #TODO: Получить из базы данных пароль и сверить.
+    return
 
 
 def show_register_dialog(player: Player) -> None:
