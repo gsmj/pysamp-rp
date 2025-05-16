@@ -238,7 +238,7 @@ def on_skin_selection_init() -> None:
 
 @Player.on_click_textdraw
 @Player.using_registry
-def on_player_select_skin(player: Player, clicked: TextDraw) -> int:
+def on_player_select_skin(player: Player, clicked: TextDraw) -> None:
     selection = SelectionUI.get(player)
     if selection is None:
         return
