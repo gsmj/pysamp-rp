@@ -13,5 +13,9 @@ def on_player_text(player: Player, text: str) -> None:
         set_timer(player.clear_animations, 2000, False)
 
     player.set_chat_bubble(text, -1, 20.0, 10000)
-    player.prox_detector(20.0, player.get_color(), text)
+    player.prox_detector(
+        20.0,
+        player.get_color(),
+        f"{player.get_name()}[{player.id}]: {text}"
+    )
     return False
