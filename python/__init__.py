@@ -7,6 +7,7 @@ from . import (
     selection,
     auth,
     newcomers_help,
+    roleplay,
 )
 
 from .finalizer import CallbackWithFinalizer
