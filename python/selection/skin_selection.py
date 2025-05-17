@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from pysamp.textdraw import TextDraw, cancel_select_text_draw, select_text_draw
+from pysamp.callbacks import registry
 from ..player import Player
 from pysamp import on_gamemode_init
 from typing import ClassVar, Optional
@@ -251,3 +252,4 @@ def on_player_select_skin(player: Player, clicked: TextDraw) -> None:
 
     if clicked.id == SelectionUI.SELECT:
         SelectionUI.disable_selection(player)
+        registry.dispatch("OnPlayerSelectSkin", player)
