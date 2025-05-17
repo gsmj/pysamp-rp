@@ -17,6 +17,14 @@ class Player(BasePlayer):
 
     def __init__(self, player_id: int):
         super().__init__(player_id)
+        self.health: float = 100.0
+        self.armour: float = 0.0
+        self.level: int = 0
+        self.exp: int = 2
+        self.money: int = 0
+        self.bank: int = 0
+        self.deposit: int = 0
+
         self.password: Optional[str] = None
         self.email: Optional[str] = None
         self.sex: Optional[Literal[0, 1]] = None
@@ -31,15 +39,11 @@ class Player(BasePlayer):
         self.promo_code: Optional[str] = None
         self.invited_by: Optional[str] = None
 
-        self.level: Optional[int] = None
-        self.exp: Optional[int] = None
         self.skin_id: Optional[int] = None
 
-        self.money: Optional[int] = None
-        self.bank: Optional[int] = None
-        self.deposit: Optional[int] = None
-
         self.roleplay_bio: Optional[str] = None
+
+        self.pickup_cooldown: float = time.time()
 
         self.is_logged: bool = False
         self.is_choosing_skin: bool = False
@@ -72,7 +76,7 @@ class Player(BasePlayer):
         self.send_client_message(RED, f"<!> {message}!")
 
     def send_tip_message(self, message: str) -> None:
-        self.send_client_message(DARK_GREEN, f">> {message}!")
+        self.send_client_message(DARK_GREEN, f">> {message}.")
 
     def load_from_model(self, model) -> None:
         """
@@ -165,6 +169,10 @@ class Player(BasePlayer):
 
     def set_skin_native(self, skin_id: int) -> bool:
         return super().set_skin(skin_id)
+
+    def set_health(self, health: float) -> bool:
+        self.health = health
+        return super().set_health(health)
 
     def kick_if_not_logged(self) -> None:
         if not self.is_logged:
