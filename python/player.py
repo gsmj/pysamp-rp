@@ -42,6 +42,7 @@ class Player(BasePlayer):
         self.skin_id: Optional[int] = None
 
         self.roleplay_bio: Optional[str] = None
+        self.show_bio: Optional[bool] = False
 
         self.pickup_cooldown: float = time.time()
 
