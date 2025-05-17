@@ -173,7 +173,7 @@ class Player(BasePlayer):
             )
             set_timer(self.kick, 1000, False)
 
-    @event("test")
-    def on_auth(cls, player: "Player") -> "Player":
+    @event("OnPlayerSelectSkin")
+    def on_select_skin(cls, player: "Player") -> "Player":
         player.send_tip_message(f"Hi from custom event, {player}!")
         return (player, )
