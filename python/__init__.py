@@ -5,7 +5,8 @@ from .player import Player
 
 from . import (
     selection,
-    auth
+    auth,
+    newcomers_help,
 )
 
 from .finalizer import CallbackWithFinalizer
