@@ -20,12 +20,6 @@ def on_ready() -> None:
 @DynamicPickup.on_player_pick_up
 @Player.using_registry
 def on_player_pickup_help(player: Player, pickup: DynamicPickup) -> None:
-    if player.level > LEVEL_HELP:
-        player.send_error_message(
-            "Вы можете восполнять своё здоровье до 2ого уровня"
-        )
-        return
-
     if not player.check_cooldown(2.5):
         player.send_error_message("Попробуйте позже")
 
