@@ -1,2 +1,2 @@
-# MRP
-Исходный код проекта Merge RolePlay
+# PySAMP RolePlay
+Исходный код проекта RolePlay проекта на языке Python
