@@ -19,8 +19,6 @@ class Player(BasePlayer):
         super().__init__(player_id)
         self.health: float = 100.0
         self.armour: float = 0.0
-        self.level: int = 0
-        self.exp: int = 2
         self.money: int = 0
         self.bank: int = 0
         self.deposit: int = 0
