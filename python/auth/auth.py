@@ -8,8 +8,8 @@ from . import dialogs
 from ..selection.skin_selection import SelectionUI
 
 DEFAULT_SKINS: dict[int, list[int]] = {
-    0: [78, 79, 134, 135, 137, 212, 230, 36, 37, 67, ],
-    1: [64, 75, 77, 85, 90, 226, 233, ]
+    0: [78, 79, 134, 135, 137, 212, 230, 36, 37, 67, 23, 59, 60, 46, 47],
+    1: [64, 75, 77, 85, 90, 226, 233, 12, 40, 41, 55, 93]
 }
 
 
