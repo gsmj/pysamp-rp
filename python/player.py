@@ -8,8 +8,48 @@ from pysamp.player import Player as BasePlayer
 from pysamp.textdraw import TextDraw  # noqa
 from pysamp.event import event
 from .color_consts import RED, DARK_GREEN
+from dataclasses import dataclass
 
 from samp import SPECIAL_ACTION_DUCK  # type: ignore
+
+@dataclass
+class AccountData:
+    password: Optional[str] = None
+    email: Optional[str] = None
+    sex: Optional[Literal[0, 1]] = None
+    pin: Optional[int] = None
+    registration_ip: Optional[str] = None
+    last_ip: Optional[str] = None
+    registration_date: Optional[datetime] = None
+
+
+@dataclass  # Инициализировать только когда становится нужен!
+class AdminData:
+    level: Optional[int] = None
+    password: Optional[int] = None
+
+
+@dataclass
+class PlayerData:
+    health: float = 100.0
+    armour: float = 0.0
+    money: int = 0
+    bank: int = 0
+    deposit: int = 0
+    skin_id: Optional[int] = None
+
+
+@dataclass
+class RolePlayData:
+    bio: Optional[str] = None
+    show_bio: Optional[bool] = False
+
+
+@dataclass
+class GiftData:
+    promo_code: Optional[str] = None
+    invited_by: Optional[str] = None
+
 
 
 class Player(BasePlayer):
@@ -17,33 +57,12 @@ class Player(BasePlayer):
 
     def __init__(self, player_id: int):
         super().__init__(player_id)
-        self.health: float = 100.0
-        self.armour: float = 0.0
-        self.money: int = 0
-        self.bank: int = 0
-        self.deposit: int = 0
-
-        self.password: Optional[str] = None
-        self.email: Optional[str] = None
-        self.sex: Optional[Literal[0, 1]] = None
-        self.pin: Optional[int] = None
-        self.registration_ip: Optional[str] = None
-        self.last_ip: Optional[str] = None
-        self.registration_date: Optional[datetime] = None
-
-        self.admin_level: Optional[int] = None
-        self.admin_password: Optional[int] = None
-
-        self.promo_code: Optional[str] = None
-        self.invited_by: Optional[str] = None
-
-        self.skin_id: Optional[int] = None
-
-        self.roleplay_bio: Optional[str] = None
-        self.show_bio: Optional[bool] = False
+        self.data = PlayerData()
+        self.account = AccountData()
+        self.roleplay = RolePlayData()
+        self.gift = GiftData()
 
         self.pickup_cooldown: float = time.time()
-
         self.is_logged: bool = False
         self.is_choosing_skin: bool = False
 
