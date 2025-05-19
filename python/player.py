@@ -9,8 +9,17 @@ from pysamp.textdraw import TextDraw  # noqa
 from pysamp.event import event
 from .color_consts import RED, DARK_GREEN
 from dataclasses import dataclass
-
+from enum import Enum, auto
 from samp import SPECIAL_ACTION_DUCK  # type: ignore
+
+
+class SpawnType(Enum):
+    LOS_SANTOS = auto()
+    SAN_FIERRO = auto()
+    LAS_VENTURAS = auto()
+    HOUSE = auto()
+    FACTION = auto()
+
 
 @dataclass
 class AccountData:
@@ -37,6 +46,7 @@ class PlayerData:
     bank: int = 0
     deposit: int = 0
     skin_id: Optional[int] = None
+    spawn: Optional[SpawnType] = None
 
 
 @dataclass
