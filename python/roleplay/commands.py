@@ -40,7 +40,7 @@ def do(player: Player, *message: str) -> None:
 
     player.set_chat_bubble(message, ACTION, 20.0, 7500)
     player.prox_detector(
-        ACTION, f"{message} ({player.get_name()})"
+        ACTION, f"{message} ( {player.get_name()} )"
     )
 
 
@@ -76,9 +76,9 @@ def try_(player: Player, *message: str) -> None:
         return player.send_error_message("Введите текст")
 
     result = random.choice((f"{DARK_GREEN_HEX}удачно", f"{RED_HEX}неудачно"))
-    message = f"{message} ({result})"
+    message = f"{message} ({result}{ACTION_HEX})"
     player.prox_detector(
-        ACTION, f"{player.get_name()} {message})"
+        ACTION, f"{player.get_name()} {message}"
     )
 
 
