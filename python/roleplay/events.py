@@ -1,5 +1,5 @@
 from ..player import Player
-from ..color_consts import GREY
+from ..color_consts import WHITE
 from pysamp.timer import set_timer
 from samp import PLAYER_STATE_ONFOOT # type: ignore
 
@@ -15,7 +15,7 @@ def on_player_text(player: Player, text: str) -> None:
 
     player.set_chat_bubble(text, -1, 20.0, 10000)
     player.prox_detector(
-        GREY,
+        WHITE,
         f"- {player.get_name()}[{player.id}]: {text}"
     )
     return False
