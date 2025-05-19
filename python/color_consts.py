@@ -14,6 +14,7 @@ YELLOW: int = 0xFFFF00AA
 ACTION: int = 0xC2A2DAFF
 GOV: int = 0x006699FF
 GREY: int = 0xA9A9A9AA
+ORANGE: int = 0xFFBF00AA
 
 # HEX colors
 
@@ -29,3 +30,4 @@ YELLOW_HEX = color_to_hex(YELLOW)
 ACTION_HEX = color_to_hex(ACTION)
 GOV_HEX = color_to_hex(GOV)
 GREY_HEX = color_to_hex(GREY)
+ORANGE_HEX = color_to_hex(ORANGE)
