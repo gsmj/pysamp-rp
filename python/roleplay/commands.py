@@ -105,5 +105,19 @@ def mybio(player: Player) -> None:
 
 @Player.command
 @Player.using_registry
+def showbio(player: Player) -> None:
+    if player.roleplay.bio is None:
+        player.send_error_message("У Вас нет биографии")
+        return
+
+    player.roleplay.show_bio = not player.roleplay.show_bio
+    player.send_tip_message(
+        f"Вы {'включили' if player.roleplay.show_bio else 'выключили'} "
+        "отображение биографии"
+    )
+
+
+@Player.command
+@Player.using_registry
 def setbio(player: Player) -> None:
     dialogs.show_setbio_dialog(player)

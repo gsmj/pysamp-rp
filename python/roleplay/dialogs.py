@@ -16,16 +16,16 @@ def show_player_bio(player: Player) -> None:
 
 def show_setbio_dialog(player: Player) -> None:
     if player.roleplay.bio is None:
-        player.send_info_message("У Вас ещё нет созданной биографии")
+        player.send_warning_message("У Вас ещё нет созданной биографии")
         show_create_bio_dialog(player)
         return
 
 
 def show_create_bio_dialog(player: Player) -> None:
-    player.send_info_message(
+    player.send_warning_message(
         "Ваша биография не должна нарушать правила проекта"
     )
-    player.send_info_message(
+    player.send_warning_message(
         "Администрация в праве отклонить Вашу биографию"
     )
     Dialog.create(
@@ -54,8 +54,13 @@ def on_create_bio_response(
         return
 
     player.roleplay.bio = input_text
+    player.roleplay.show_bio = False
     player.send_tip_message("Ваша биография сохранена")
     player.send_tip_message(
         "Вы можете включить отображение биографии, используя команду "
         f"{HIGHLIGHT_HEX}/showbio{DARK_GREEN_HEX}"
+    )
+    player.send_tip_message(
+        "Чтобы просмотреть Вашу биографию, используйте команду "
+        f"{HIGHLIGHT_HEX}/mybio{DARK_GREEN_HEX}"
     )

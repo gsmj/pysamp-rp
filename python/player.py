@@ -106,7 +106,7 @@ class Player(BasePlayer):
     def send_tip_message(self, message: str) -> None:
         self.send_client_message(DARK_GREEN, f">> {message}.")
 
-    def send_info_message(self, mesage: str) -> None:
+    def send_warning_message(self, mesage: str) -> None:
         self.send_client_message(ORANGE, f"> {mesage}.")
 
     def load_from_model(self, model) -> None:
