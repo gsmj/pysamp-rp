@@ -1,4 +1,3 @@
-import functools
 from pysamp.dialog import Dialog
 from ..player import Player
 from ..color_consts import (
@@ -7,6 +6,7 @@ from ..color_consts import (
     RED_HEX,
     GREEN_HEX,
 )
+from ..server_consts import SERVER_NAME
 from samp import DIALOG_STYLE_INPUT, DIALOG_STYLE_MSGBOX # type: ignore
 
 RULES_PAGE_ONE: str = f"""\
@@ -61,7 +61,7 @@ def show_login_dialog(player: Player) -> None:
         DIALOG_STYLE_INPUT,
         "Регистрация | Пароль",
         f"{WHITE_HEX}Добро пожаловать на сервер "
-        f"{HIGHLIGHT_HEX}Merge RolePlay{WHITE_HEX}!\n"
+        f"{HIGHLIGHT_HEX}{SERVER_NAME}{WHITE_HEX}!\n"
         f"Ваш аккаунт {GREEN_HEX}зарегестрирован{WHITE_HEX}.\n"
         "Введите пароль:",
         "Далее",
@@ -94,7 +94,7 @@ def show_register_dialog(player: Player) -> None:
         DIALOG_STYLE_INPUT,
         "Регистрация | Пароль",
         f"{WHITE_HEX}Добро пожаловать на сервер "
-        f"{HIGHLIGHT_HEX}Merge RolePlay{WHITE_HEX}!\n"
+        f"{HIGHLIGHT_HEX}{SERVER_NAME}{WHITE_HEX}!\n"
         f"Ваш аккаунт {RED_HEX}не зарегестрирован{WHITE_HEX}.\n"
         "Введите пароль:",
         "Далее",

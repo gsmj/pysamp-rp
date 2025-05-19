@@ -4,6 +4,7 @@ from ..color_consts import (
     WHITE_HEX,
     HIGHLIGHT_HEX,
 )
+from ..server_consts import SERVER_NAME
 from . import dialogs
 from ..selection.skin_selection import SelectionUI
 
@@ -22,7 +23,7 @@ def on_player_connect_auth(player: Player) -> None:
     player.toggle_spectating(True)
     player.send_client_message(
         WHITE,
-        f"Добро пожаловать на сервер {HIGHLIGHT_HEX}Merge RolePlay{WHITE_HEX}!"
+        f"Добро пожаловать на сервер {HIGHLIGHT_HEX}{SERVER_NAME}{WHITE_HEX}!"
     )
     dialogs.show_register_dialog(player)
 
