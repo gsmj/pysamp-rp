@@ -9,6 +9,8 @@ from . import (
     auth,
     newcomers_help,
     roleplay,
+    gps,
+    bank
 )
 
 from .finalizer import CallbackWithFinalizer
