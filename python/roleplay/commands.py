@@ -9,7 +9,7 @@ from ..color_consts import (
     ACTION_HEX,
 )
 from ..player import Player
-
+from . import dialogs
 
 @Player.command
 def me(player: Player, *message: str) -> None:
@@ -91,3 +91,19 @@ def b(player: Player, *message: str) -> None:
     player.prox_detector(
         GREY, f"{player.get_name()}: (( {message} ))"
     )
+
+
+@Player.command
+@Player.using_registry
+def mybio(player: Player) -> None:
+    if player.roleplay.bio is None:
+        player.send_error_message("У Вас нет биографии")
+        return
+
+    dialogs.show_player_bio(player)
+
+
+@Player.command
+@Player.using_registry
+def setbio(player: Player) -> None:
+    dialogs.show_setbio_dialog(player)
