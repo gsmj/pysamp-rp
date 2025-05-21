@@ -1,5 +1,7 @@
+import os
 import pystreamer
 from pysamp import on_gamemode_init, set_world_time
+from dotenv import load_dotenv
 from datetime import datetime
 from .player import Player
 
@@ -10,7 +12,7 @@ from . import (
     newcomers_help,
     roleplay,
     gps,
-    bank
+    # bank
 )
 
 from .finalizer import CallbackWithFinalizer
@@ -29,6 +31,7 @@ def on_player_disconnect(player: Player, reason: int) -> None:
 
 @on_gamemode_init
 def on_ready() -> None:
+    load_dotenv()
     pystreamer.register_callbacks()
     print("Loaded")
     set_world_time(datetime.now().hour)
