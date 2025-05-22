@@ -12,6 +12,7 @@ from . import (
     gps,
     bank
 )
+from . import debug
 
 from .finalizer import CallbackWithFinalizer
 import samp # type: ignore

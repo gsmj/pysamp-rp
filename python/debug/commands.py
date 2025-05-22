@@ -23,3 +23,14 @@ def dsetpos(player: Player, x: float, y: float, z: float) -> None:
         return player.send_error_message("Введите число!")
 
     player.set_pos(x, y, z)
+
+
+@Player.command
+@Player.using_registry
+def dsetworld(player: Player, world_id: int) -> None:
+    try:
+        world_id = int(world_id)
+    except:  # noqa: E722
+        return player.send_error_message("Введите число!")
+
+    player.set_virtual_world(world_id)
