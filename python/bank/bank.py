@@ -1,8 +1,6 @@
 from dataclasses import dataclass
 from pystreamer.dynamicpickup import DynamicPickup
 from pystreamer.dynamicmapicon import DynamicMapIcon
-from pystreamer.dynamiczone import DynamicZone
-DynamicZone.create_circle()
 
 banks: dict[int, "Bank"] = {}
 
@@ -42,14 +40,14 @@ banks = {
     #     ),
     # ),
     # 1: palomino, 2: sf, 3: lv, 4: fc
-    1: Bank(
-        "Palomino Creek Bank",
-        DynamicPickup.create(
-            1318,
-            23,
-            2303.8284,
-            -16.1692,
-            26.4844,
-        ),
-    )
+    # 1: Bank(
+    #     "Palomino Creek Bank",
+    #     DynamicPickup.create(
+    #         1318,
+    #         23,
+    #         2303.8284,
+    #         -16.1692,
+    #         26.4844,
+    #     ),
+    # )
 }

@@ -4,5 +4,4 @@
 from . import (
     bank,
     events,
-    interiors,
 )
