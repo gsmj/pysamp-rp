@@ -11,7 +11,6 @@ from . import (
     roleplay,
     gps,
     bank,
-    cooldowns
 )
 from . import debug
 
