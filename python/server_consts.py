@@ -14,4 +14,4 @@ def on_server_init() -> None:
     send_rcon_command(f"game.map {SERVER_MAP}")
     send_rcon_command(f"website {SERVER_WEB}")
     send_rcon_command(f"discord.invite {SERVER_DISCORD}")
-    print("Loaded: server_consts")
+    print("Loaded: Server consts")

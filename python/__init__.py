@@ -1,4 +1,3 @@
-import os
 import pystreamer
 from pysamp import on_gamemode_init, set_world_time
 from dotenv import load_dotenv
@@ -33,7 +32,7 @@ def on_player_disconnect(player: Player, reason: int) -> None:
 def on_ready() -> None:
     load_dotenv()
     pystreamer.register_callbacks()
-    print("Loaded")
+    print("Loaded: Gamemode")
     set_world_time(datetime.now().hour)
 
     import python
