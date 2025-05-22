@@ -50,6 +50,14 @@ class PlayerData:
 
 
 @dataclass
+class DocumentsData:
+    has_passport: bool = False
+    has_ssn: bool = False
+    has_driving_license: bool = False
+    has_driving_truck_license: bool = False
+
+
+@dataclass
 class RolePlayData:
     bio: Optional[str] = None
     show_bio: Optional[bool] = False
@@ -61,7 +69,6 @@ class GiftData:
     invited_by: Optional[str] = None
 
 
-
 class Player(BasePlayer):
     registry: dict[int, BasePlayer] = {}
 
@@ -71,6 +78,7 @@ class Player(BasePlayer):
         self.account = AccountData()
         self.roleplay = RolePlayData()
         self.gift = GiftData()
+        self.documents = DocumentsData()
 
         self.pickup_cooldown: float = time.time()
         self.is_logged: bool = False
