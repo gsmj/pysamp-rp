@@ -222,5 +222,4 @@ class Player(BasePlayer):
 
     @event("OnPlayerSelectSkin")
     def on_select_skin(cls, player: "Player") -> "Player":
-        player.send_tip_message(f"Hi from custom event, {player}!")
         return (player, )
