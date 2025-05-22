@@ -22,8 +22,5 @@ def on_ready() -> None:
 @Player.using_registry
 def on_player_pickup_help(player: Player, pickup: DynamicPickup) -> None:
     if pickup.id == PICKUP_ID:
-        if not player.check_cooldown(2.5):
-            player.send_error_message("Попробуйте позже")
-
         player.set_health(100.0)
         player.send_tip_message("Вы восполнили своё здоровье")
