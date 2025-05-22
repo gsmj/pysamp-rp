@@ -10,7 +10,8 @@ from . import (
     newcomers_help,
     roleplay,
     gps,
-    bank
+    bank,
+    cooldowns
 )
 from . import debug
 
