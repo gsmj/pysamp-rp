@@ -3,7 +3,7 @@ from pystreamer.dynamicpickup import DynamicPickup
 from pystreamer.dynamicmapicon import DynamicMapIcon
 from pystreamer.dynamictextlabel import DynamicTextLabel
 from .consts import BANK_WORLD_ID
-from ..color_consts import HIGHLIGHT
+from ..color_consts import DIALOG
 
 banks: dict[int, "Bank"] = {}
 
@@ -15,16 +15,14 @@ class Bank:
     exit_pickup: DynamicPickup
     position_on_enter: list[float]
     position_on_exit: list[float]
+    label_position: list[float]
     map_icon_id: int
     angle_on_enter: float = 0.0
     angle_on_exit: float = 90.0
 
     def __post_init__(self) -> None:
-        x, y, z = *self.position_on_exit,
         DynamicMapIcon.create(
-            x,
-            y,
-            z,
+            *self.position_on_exit,
             self.map_icon_id,
             0,
             world_id=0,
@@ -32,11 +30,9 @@ class Bank:
         )
         DynamicTextLabel.create(
             self.name,
-            HIGHLIGHT,
-            x,
-            y,
-            z + 0.5,
-            10.0,
+            DIALOG,
+            *self.label_position,
+            5.0,
         )
 
 banks = {
@@ -70,6 +66,7 @@ banks = {
         ),
         [2549.1804, 1337.8145, 78.5523],
         [2302.6252, -16.1454, 26.4844],
+        [2303.8284, -16.1692, 27.0000],
         52,
         angle_on_enter=270.0,
     )
