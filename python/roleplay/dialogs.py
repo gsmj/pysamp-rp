@@ -1,6 +1,6 @@
 from pysamp.dialog import Dialog
 from ..player import Player
-from ..color_consts import HIGHLIGHT_HEX, DARK_GREEN_HEX
+from ..color_consts import HIGHLIGHT_HEX, GREY_HEX
 from samp import DIALOG_STYLE_MSGBOX, DIALOG_STYLE_INPUT  # type: ignore
 
 
@@ -58,9 +58,9 @@ def on_create_bio_response(
     player.send_tip_message("Ваша биография сохранена")
     player.send_tip_message(
         "Вы можете включить отображение биографии, используя команду "
-        f"{HIGHLIGHT_HEX}/showbio{DARK_GREEN_HEX}"
+        f"{HIGHLIGHT_HEX}/showbio{GREY_HEX}"
     )
     player.send_tip_message(
         "Чтобы просмотреть Вашу биографию, используйте команду "
-        f"{HIGHLIGHT_HEX}/mybio{DARK_GREEN_HEX}"
+        f"{HIGHLIGHT_HEX}/mybio{GREY_HEX}"
     )
