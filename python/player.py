@@ -7,7 +7,7 @@ from pysamp.timer import set_timer
 from pysamp.player import Player as BasePlayer
 from pysamp.textdraw import TextDraw  # noqa
 from pysamp.event import event
-from .color_consts import RED, DARK_GREEN, ORANGE
+from .color_consts import RED, GREY, ORANGE
 from dataclasses import dataclass
 from enum import Enum, auto
 from samp import SPECIAL_ACTION_DUCK  # type: ignore
@@ -112,7 +112,7 @@ class Player(BasePlayer):
         self.send_client_message(RED, f"<!> {message}!")
 
     def send_tip_message(self, message: str) -> None:
-        self.send_client_message(DARK_GREEN, f">> {message}.")
+        self.send_client_message(GREY, f">> {message}.")
 
     def send_warning_message(self, mesage: str) -> None:
         self.send_client_message(ORANGE, f"> {mesage}.")
