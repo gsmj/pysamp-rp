@@ -51,8 +51,8 @@ class PlayerData:
 
 @dataclass
 class DocumentsData:
-    has_passport: bool = False
-    has_ssn: bool = False
+    has_passport: bool = True  # TODO: False
+    has_ssn: bool = True  # TODO: False
     has_driving_license: bool = False
     has_driving_truck_license: bool = False
 
@@ -219,6 +219,9 @@ class Player(BasePlayer):
                 "Необходимо авторизоваться / пройти регистрацию"
             )
             set_timer(self.kick, 1000, False)
+
+    def send_press_key(self, key: str) -> None:
+        self.game_text(f"~w~PRESS ~b~{key}", 2500, 5)
 
     @event("OnPlayerSelectSkin")
     def on_select_skin(cls, player: "Player") -> "Player":
